@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load custom_tags %}
+
+{% block content %}
+<h1> Bem-vindo ao seu Gerenciador de Finanças Pessoais</h1>
+<h2>Informações Gerais</h2>
+<div class="content">
+    <div class="card-box sm">
+        <h3>Saldo</h3>
+        <p>{{ current_balance }}</p>
+        <div class="mini-box">
+            <a href="{% url 'accounts' %}">
+                <span>
+                    Ir para contas
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="card-box lg">
+        <h3>Compras & Gastos</h3>
+        <p>Débito: {{ values_outputs_debit }}</p>
+        <p>Crédito: {{ values_outputs_credit }}</p>
+        <div class="mini-box">
+            <a href="extract/">
+                <span>
+                    Ir para extrato
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="card-box lg extra">
+        {% include 'form.html' %}
+        {% block form %}
+        {% endblock %}
+    </div>
+    {% endblock %}

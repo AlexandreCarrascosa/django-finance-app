@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+
+{% block form %}
+<div class="post-form">
+    <table>
+        {{ form.as_table }}
+    </table>
+
+</div>
+<div class="button-box">
+    <a href="submit/">
+        <button type="submit">Registrar</button>
+    </a>
+</div>
+</form>
+</div>
+{% endblock %}

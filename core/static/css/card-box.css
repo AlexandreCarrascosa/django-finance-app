@@ -1,0 +1,182 @@
+@import url(buttons.css);
+
+.content-box {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans Condensed';
+    text-align: left;
+}
+
+/* GENERAL SETTINGS TO CLASS CARD-BOX */
+.card-box {
+    /* Display settings */
+    height: 32rem;
+
+    /* Glass (Blur) Effect */
+    background: linear-gradient(60deg, #99e2b477, #14746f3b);
+    transform: perspective(100rem);
+    transform-style: preserve-3d;
+
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2),
+        0 1.5rem 1.2rem rgba(0, 0, 0, 0.15);
+
+    transition: all 180ms ease-out;
+    /* transition: all 0.2s; */
+
+    /* Other settings */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: left;
+    border-radius: 3.2rem;
+
+}
+
+/* 
+INHERIT SETTINGS FROM CARD-BOX AND ADAPT 
+WIDTH SIZE FOR SMALL BOX 
+*/
+.card-box.sm {
+    min-width: 32rem;
+}
+
+/* 
+INHERIT SETTINGS FROM CARD-BOX AND ADAPT 
+WIDTH SIZE FOR LARGE CARD BOX
+*/
+.card-box.lg {
+    min-width: 52rem;
+    padding-bottom: 10rem;
+}
+
+/* SETTTING TO BOX INSIDE CARD-BOX, POSITIONED IN BOTTOM OF CARD */
+.card-box.lg .mini-box {
+    background-color: whitesmoke;
+    position: absolute;
+    align-content: space-around;
+    justify-content: space-evenly;
+    text-align: center;
+    right: 0;
+    bottom: 0;
+    width: 52rem;
+    height: 9rem;
+    border-radius: 4rem 2rem 3rem 3rem;
+    transition: .2s ease-in-out;
+}
+
+/* SETTINGS TO FORMAT TAGS INSIDE MINI-BOX */
+.card-box.lg .mini-box span{
+    color: #14746fa8;
+    left: 2rem;
+    bottom: 2rem;
+}
+
+.card-box.lg .mini-box p{
+    color: #14746fa8;
+    right: 2rem;
+    bottom: 2rem;
+}
+
+/* GENERAL SETTINGS TO TAGS INSIDE CARD-BOX (RELATIVE TO TEXT) */
+.card-box h3 {
+    font-family: 'Exo 2';
+    font-size: 3.6rem;
+    text-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.4);
+}
+
+.card-box p {
+    font-size: 3.6rem;
+}
+
+.card-box span {
+    position: absolute;
+    bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.card-box.lg h3 {
+    display: flex;
+    padding-bottom: 2rem;
+    top: 1rem;
+    text-align: left;
+    white-space: nowrap;
+
+}
+
+.card-box:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.03);
+}
+
+.card-box span::after {
+    background-color: #354F52;
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: .2rem;
+    transition: all 0.5s;
+}
+
+.card-box span:hover::after {
+    width: 100%;
+}
+
+.card-box.lg span::after {
+    background-color: #14746fa8;
+}
+
+
+.card-box.lg.extra {
+    height: 5%;
+}
+
+.card-box.lg.extra>h3 {
+    position: fixed;
+    align-self: center;
+}
+
+.content-box p {
+    font-size: 1.8rem;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+
+}
+
+.box-content{ 
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    
+    margin: 5rem;
+    padding: 5rem;
+
+    background-color: #264653;
+    color: white;
+
+    border-radius: 1.2rem;
+}
+
+.box-subcontent {
+    display: flex;
+    align-content: flex-end;
+    justify-content: space-between;
+
+    position: relative;
+    color: white;
+
+}
+
+.box-subcontent a{
+    
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    color: white;
+    
+}

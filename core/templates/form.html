@@ -1,0 +1,13 @@
+
+<form method="POST">
+    {% csrf_token %}
+    <h3>Inserir Movimentações</h3>
+    <div align="center">
+        <label>Selecione o tipo de movimentação:</label>
+        <select name="moviment_type" onchange="this.form.submit()">
+            <option value ="{% url 'index' %}"> ------- </option>
+            <option value="{% url 'insertInput' %}">Entrada</option>
+            <option value="{% url 'insertOutput' %}">Saída</option>
+        </select>
+
+    </div>

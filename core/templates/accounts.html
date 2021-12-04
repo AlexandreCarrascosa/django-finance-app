@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="content">
+
+<div class="box">
+    {% for account in accounts %}
+    <div class="box-content">
+        <h1>{{ account.bank }}</h1>
+        <p>Conta: {{ account.account }}</p>
+        <p>Saldo: R$ {{ account.balance }}</p>
+        <div class="box-subcontent">
+            <a href="">
+                <span class='edit-account'>
+                    Editar
+                    <i class="fas fa-edit"></i>
+                </span>
+                
+            </a>
+            <a href="">
+                <span class='delete-account'>
+                    Excluir
+                    <i class="fas fa-trash-alt"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

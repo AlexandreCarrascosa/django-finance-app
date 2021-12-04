@@ -1,0 +1,32 @@
+@import url(navbar.css);
+@import url(content.css);
+@import url(texts.css);
+@import url(forms.css);
+
+
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  /* a cada 1rem será considerado 10px */
+  font-size: 62.5%;
+  text-decoration: none;
+  background-color: #ffff;
+  font-family: "Open Sans Condensed";
+}
+
+a:link{
+  color: #354F52;
+  text-decoration: none;
+}
+
+.main{
+  margin-top: 5rem;
+  color: #354F52;
+  text-align: center;
+}

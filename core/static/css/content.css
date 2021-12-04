@@ -1,0 +1,32 @@
+@import url(card-box.css);
+
+.content{
+  /* Display settings */
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  
+   
+  /* General Settings */
+  margin: 5rem 15em 5rem 5rem;
+  text-align: center;
+  border-radius: 2rem;
+  color: #354F52;
+  
+}
+
+.content > * {
+  padding: 2rem;
+  margin: 0 2rem 0 2rem;
+
+}
+
+.content ul{
+  text-align: left;
+}
+
+.content ul li {
+  font-size: 2rem;
+  text-decoration: none;
+  list-style-type: none;
+}

@@ -1,0 +1,49 @@
+@import url(dropdown.css);
+
+.navbar-nav {
+  text-align: center;
+  padding-top: 5rem;
+}
+
+.navbar {
+  background: #2F3E46;
+}
+
+/* Configure position of items in navbar */
+nav ul li {
+  display: inline-block;
+  min-width: 13rem;
+  margin-left: -.2rem;
+  margin-right: -.2rem;
+  height: 4rem;
+  line-height: 4rem;
+  background: transparent;
+  transition: all .1s linear;
+}
+
+nav ul li {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 200;
+  font-size: 2.3rem;
+  text-transform: uppercase;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+nav ul li:hover {
+  border-bottom: .5rem solid #84A98C;
+}
+
+nav ul li:last-child{
+  position: absolute;
+  right: 5rem;
+  border:0;
+}
+
+nav ul li:last-child > a:hover{
+  font-weight: bold;
+  color:rgb(233, 44, 44);
+}
