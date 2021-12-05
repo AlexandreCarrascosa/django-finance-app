@@ -1,1 +1,11 @@
+# Backup files
+*.bak
+
+# Database
+*.sqlite3
+
+# Others
 .env
+__pycache__/
+env/
+
