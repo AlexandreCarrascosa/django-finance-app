@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div align="center">
+    <div class="card-box form">
+        <form method="post">
+            {% csrf_token %}
+            <h3>Editando conta {{ account }}</h3>
+            <div class="post-form">
+                <table>
+                    <tr>
+                        <th>
+                            <label for="id_account">Conta:</label>
+                        </th>
+                        <td>
+                            {{ account }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="id_bank">Banco:</label>
+                        </th>
+                        <td>
+                            <input
+                                type="text"
+                                name="bank"
+                                maxlength="100"
+                                required
+                                id="id_bank"
+                                value = "{{ bank }}"
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="id_balance">Saldo:</label>
+                        </th>
+                        <td>
+                            <input
+                                type="number"
+                                name="balance"
+                                step="0.01"
+                                required
+                                id="id_balance"
+                                value = "{{ balance }}"
+                            >
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="button-box">
+                <button type="submit">Editar</button>
+                <a href="{% url 'accounts' %}">
+                    <button type="button">Cancelar</button>
+                </a>
+            </div>
+            {% if messages %}
+            <div class="messages info">
+                {% for message in messages %}
+                <p {% if message.tags %} class = "{{ message.tags }}" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </form>
+</div>
+</div>
+{% endblock %}

@@ -4,7 +4,7 @@ from django.db.models import Sum, fields
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import Http404
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render, resolve_url
 from .models import *
 from .forms import *
 
@@ -85,6 +85,7 @@ def accounts(request):
 
     context = {
         'accounts': registered_accounts,
+ 
     }
 
     return render(request, 'accounts.html', context=context)
@@ -102,12 +103,14 @@ def create_account(request):
     infos['form'] = form
 
     if request.POST:
+                
         if form.is_valid():
             data = request.POST
             account = data.get('account')
             bank = data.get('bank')
             balance = data.get('balance')
-
+                       
+                
             totalBalance.objects.create(
                 account=account,
                 bank=bank,
@@ -129,6 +132,38 @@ def create_account(request):
           return HttpResponseRedirect(reverse('new_account'))
 
     return render(request, 'create_account.html', context=infos)
+
+def edit_account(request, account):
+    
+    info = totalBalance.objects.get(account=account)
+    
+    if request.POST:
+        
+        data = request.POST
+        bank = data.get('bank')
+        balance = data.get('balance')
+        
+        info.bank = bank
+        info.balance = balance
+        info.save()
+        
+        messages.success(request, f'Informações da conta {account} atualizadas!')
+    
+    bank = info.bank
+    balance = str(info.balance)
+    balance = balance.replace(',', '.')
+       
+    context = {
+        'account': account,
+        'bank': bank,
+        'balance': balance,
+    }
+        
+    
+    return render(request, 'edit_account.html', context)
+
+def delete_accout(request):
+    pass
 
 
 def insertInput(request):
