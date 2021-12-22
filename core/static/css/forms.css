@@ -26,3 +26,14 @@
 .error {
     color: tomato ;
 }
+
+.btn{
+    padding: 0.7rem;
+    margin: 0.5rem;;
+    border: none;
+    border-radius: 12px;
+}
+
+input[type="text"]{
+    text-align: center;
+}

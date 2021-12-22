@@ -80,16 +80,14 @@ def accounts(request):
     This view function is use to read all accounts
     registered on database
     '''
-
     registered_accounts = totalBalance.objects.all()
-
     
     data = request.GET.get('account')    
     
     if data:
         
         messages.warning(request, 'Você tem certeza que deseja deletar essa conta? (Essa ação é irreversível!)')
-        
+    
     context = {
         'accounts': registered_accounts,
         'data': data,
@@ -97,6 +95,25 @@ def accounts(request):
 
     return render(request, 'accounts.html', context=context)
 
+def delete_account(request, account):
+    
+    if request.POST:
+        
+        try:
+            query = totalBalance.objects.get(account=account)
+        except Exception:
+            raise Http404()
+        
+        text_confirm = request.POST.get('text-delete-confirm')
+        base = f'{query.bank}/{query.account}'
+        
+        if text_confirm == base:
+
+            query.delete()
+             
+        return HttpResponseRedirect(reverse('accounts'))
+    
+    pass
 
 def create_account(request):
     '''

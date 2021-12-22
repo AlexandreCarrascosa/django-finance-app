@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="content">
+
     <div class="box">
         {% for account in accounts %}
         <div class="box-content">
@@ -30,10 +31,14 @@
                 <div class="message info sm">
                     {% for message in messages %}
                     <p> {{ message }}</p>
-                    <button type="submit" name="confirm">Sim</button>
+                    <form action="delete/{{ account.account }}" method="POST">{% csrf_token %}
+                    <span> Digite <b>{{account.bank}}/{{account.account}}</b> e confirme</span>             
+                    <input type="text" name="text-delete-confirm" id="text-delete-confirm" placeholder="{{ account.bank }}/{{ account.account }}">
+                    <button type="submit" class="btn">Confirmar</button>
                     <a href="{% url 'accounts' %}">
-                        <button type="button">Não</button>
+                        <button type="button" class="btn">Cancelar</button>
                     </a>
+                    </form>
                 </div>
                     {% endfor %}
                 {% endif %}
