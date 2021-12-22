@@ -147,7 +147,6 @@ WIDTH SIZE FOR LARGE CARD BOX
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
-
 }
 
 .box-content{ 
@@ -162,6 +161,7 @@ WIDTH SIZE FOR LARGE CARD BOX
     color: white;
 
     border-radius: 1.2rem;
+    align-self: center;
 }
 
 .box-subcontent {

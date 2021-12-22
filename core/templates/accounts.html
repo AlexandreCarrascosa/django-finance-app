@@ -2,32 +2,45 @@
 
 
 {% block content %}
-
 <div class="content">
-
-<div class="box">
-    {% for account in accounts %}
-    <div class="box-content">
-        <h1>{{ account.bank }}</h1>
-        <p>Conta: {{ account.account }}</p>
-        <p>Saldo: R$ {{ account.balance }}</p>
-        <div class="box-subcontent">
-            <a href="{% url 'edit_account' account=account.account %}">
-                <span class='edit-account'>
-                    Editar
-                    <i class="fas fa-edit"></i>
-                </span>
-                
-            </a>
-            <a href="">
-                <span class='delete-account'>
-                    Excluir
-                    <i class="fas fa-trash-alt"></i>
-                </span>
-            </a>
+    <div class="box">
+        {% for account in accounts %}
+        <div class="box-content">
+            <h1>{{ account.bank }}</h1>
+            <p>Conta: {{ account.account }}</p>
+            <p>Saldo: R$ {{ account.balance }}</p>
+            <div class="box-subcontent">
+                <a href="{% url 'edit_account' account=account.account %}">
+                    <span class="edit-account">
+                        Editar
+                        <i class="fas fa-edit"></i>
+                    </span>
+                </a>
+                <a href="{% url 'accounts' %}?account={{ account.account }}">
+                    <span class="delete-account">
+                        Excluir
+                        <i class="fas fa-trash-alt"></i>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Message to confirm delete account option -->
+            {% if account.account == data %}
+                {% if messages %}
+                <div class="message info sm">
+                    {% for message in messages %}
+                    <p> {{ message }}</p>
+                    <button type="submit" name="confirm">Sim</button>
+                    <a href="{% url 'accounts' %}">
+                        <button type="button">Não</button>
+                    </a>
+                </div>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+            <!-- --------------------------------------- -->
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 </div>
 {% endblock %}

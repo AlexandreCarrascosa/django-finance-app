@@ -83,9 +83,16 @@ def accounts(request):
 
     registered_accounts = totalBalance.objects.all()
 
+    
+    data = request.GET.get('account')    
+    
+    if data:
+        
+        messages.warning(request, 'Você tem certeza que deseja deletar essa conta? (Essa ação é irreversível!)')
+        
     context = {
         'accounts': registered_accounts,
- 
+        'data': data,
     }
 
     return render(request, 'accounts.html', context=context)
@@ -161,9 +168,6 @@ def edit_account(request, account):
         
     
     return render(request, 'edit_account.html', context)
-
-def delete_accout(request):
-    pass
 
 
 def insertInput(request):
