@@ -1,7 +1,8 @@
 from decimal import Decimal
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db.models import Sum, fields
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render, resolve_url
@@ -9,10 +10,11 @@ from .models import *
 from .forms import *
 
 
-def query_db():
+def query_db(user):
     # Get all avaliable balance
-    current_balance = totalBalance.objects.aggregate(total=Sum('balance'))[
-        'total']
+    
+    current_balance = totalBalance.objects.filter(user=user).aggregate(total=Sum('balance'))['total']
+    
     current_balance = f'R${current_balance :.2f}' if current_balance != None else 'R$0.00'
 
     # Get General Outputs
@@ -38,8 +40,7 @@ def query_db():
                                )
 
     # Get outpurs in debit
-    outputs_debit = moneyOutputs.objects.filter(
-        payment_type__startswith="D").all()
+    outputs_debit = moneyOutputs.objects.filter(        payment_type__startswith="D").all()
 
     values_outputs_debit = outputs_debit.aggregate(total=Sum('value'))['total']
 
@@ -64,24 +65,130 @@ def query_db():
 
     return infos
 
+def login_user(request):
+    return render(request, 'login.html')
 
+def logout_user(request):
+    logout(request)
+    return redirect('/')
+
+def submit_login(request):
+    
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        user = authenticate(username=username, 
+                            password=password)
+        
+        print(username, password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        
+        else:
+            messages.error(request, "Erro: Usuário e/ou Senha Incorreto!")
+        
+    return redirect('/')
+
+
+@login_required(login_url="/login/")
 def index(request):
 
-    infos = query_db()
+    user = request.user
+    infos = query_db(user)
+
+    if request.method == "POST":
+        return HttpResponseRedirect(request.POST.get('moviment_type'))
+    
+    context = {
+        'infos': infos,
+        'user': request.user,
+    }
+
+    return render(request, 'index.html', context=context)
+
+def insertInput(request):
+
+    user = request.user
+    infos = query_db(user)
+
+    form = addInput(request.POST or None)
+    infos['form'] = form
+
+    if request.POST:
+        if form.is_valid():
+            title = request.POST.get('title')
+            value = request.POST.get('value')
+            input_date = request.POST.get('input_date')
+            account_number = request.POST.get('account')
+
+            account = totalBalance.objects.get(account=account_number)
+
+            account.balance += Decimal(float(value))
+            account.save()
+
+            moneyInputer.objects.create(title=title,
+                                        value=value,
+                                        input_date=input_date,
+                                        account=account,
+                                        )
 
     if request.method == "POST":
         return HttpResponseRedirect(request.POST.get('moviment_type'))
 
-    return render(request, 'index.html', context=infos)
+    return render(request, 'form_input.html', context=infos)
 
 
+def insertOutput(request):
+
+    user = request.user
+    infos = query_db(user)
+
+    form = addOutput(request.POST or None)
+    infos['form'] = form
+
+    if request.POST:
+        if form.is_valid():
+            title = request.POST.get('title')
+            description = request.POST.get('description')
+            value = request.POST.get('value')
+            output_date = request.POST.get('output_date')
+            payment_type = request.POST.get('payment_type')
+            installments = request.POST.get('installments')
+
+            account_number = request.POST.get('account')
+            account = totalBalance.objects.filter(user=user).get(account=account_number)
+
+            if payment_type == "D":
+                account.balance -= Decimal(float(value))
+                account.save()
+
+            moneyOutputs.objects.create(title=title,
+                                        description=description,
+                                        value=value,
+                                        output_date=output_date,
+                                        payment_type=payment_type,
+                                        installments=installments,
+                                        account=account,
+                                        )
+
+    if request.method == "POST":
+        return HttpResponseRedirect(request.POST.get('moviment_type'))
+
+    return render(request, 'form_output.html', context=infos)
+
+
+@login_required(login_url="/login/")
 def accounts(request):
     '''
     This view function is use to read all accounts
     registered on database
     '''
-    registered_accounts = totalBalance.objects.all()
+    user = request.user
     
+    registered_accounts = totalBalance.objects.filter(user=user)
     data = request.GET.get('account')    
     
     if data:
@@ -92,9 +199,12 @@ def accounts(request):
         'accounts': registered_accounts,
         'data': data,
     }
+    
+    print(type(registered_accounts))
 
     return render(request, 'accounts.html', context=context)
 
+@login_required(login_url="/login/")
 def delete_account(request, account):
     
     if request.POST:
@@ -110,18 +220,20 @@ def delete_account(request, account):
         if text_confirm == base:
 
             query.delete()
-             
+
         return HttpResponseRedirect(reverse('accounts'))
     
     pass
 
+@login_required(login_url="/login/")
 def create_account(request):
     '''
     This view function is used to add a new account and
     to Edit accounts
 
     '''
-    infos = query_db()
+    
+    infos = query_db(request.user)
 
     form = addAccount(request.POST or None)
     infos['form'] = form
@@ -133,12 +245,13 @@ def create_account(request):
             account = data.get('account')
             bank = data.get('bank')
             balance = data.get('balance')
-                       
+            user = request.user    
                 
             totalBalance.objects.create(
                 account=account,
                 bank=bank,
-                balance=balance
+                balance=balance,
+                user=user
             )
             
 
@@ -157,16 +270,21 @@ def create_account(request):
 
     return render(request, 'create_account.html', context=infos)
 
+@login_required(login_url="/login/")
 def edit_account(request, account):
     
+    user = request.user
     info = totalBalance.objects.get(account=account)
+    
+    if user != info.user:
+        return redirect('/')
     
     if request.POST:
         
         data = request.POST
         bank = data.get('bank')
         balance = data.get('balance')
-        
+                
         info.bank = bank
         info.balance = balance
         info.save()
@@ -187,68 +305,3 @@ def edit_account(request, account):
     return render(request, 'edit_account.html', context)
 
 
-def insertInput(request):
-
-    infos = query_db()
-
-    form = addInput(request.POST or None)
-    infos['form'] = form
-
-    if request.POST:
-        if form.is_valid():
-            title = request.POST.get('title')
-            value = request.POST.get('value')
-            input_date = request.POST.get('input_date')
-            account_number = request.POST.get('account')
-
-            account = totalBalance.objects.get(account=account_number)
-
-            account.balance += Decimal(float(value))
-            account.save()
-
-            moneyInputer.objects.create(title=title,
-                                        value=value,
-                                        input_date=input_date,
-                                        account=account)
-
-    if request.method == "POST":
-        return HttpResponseRedirect(request.POST.get('moviment_type'))
-
-    return render(request, 'form_input.html', context=infos)
-
-
-def insertOutput(request):
-
-    infos = query_db()
-
-    form = addOutput(request.POST or None)
-    infos['form'] = form
-
-    if request.POST:
-        if form.is_valid():
-            title = request.POST.get('title')
-            description = request.POST.get('description')
-            value = request.POST.get('value')
-            output_date = request.POST.get('output_date')
-            payment_type = request.POST.get('payment_type')
-            installments = request.POST.get('installments')
-
-            account_number = request.POST.get('account')
-            account = totalBalance.objects.get(account=account_number)
-
-            if payment_type == "D":
-                account.balance -= Decimal(float(value))
-                account.save()
-
-            moneyOutputs.objects.create(title=title,
-                                        description=description,
-                                        value=value,
-                                        output_date=output_date,
-                                        payment_type=payment_type,
-                                        installments=installments,
-                                        account=account)
-
-    if request.method == "POST":
-        return HttpResponseRedirect(request.POST.get('moviment_type'))
-
-    return render(request, 'form_output.html', context=infos)

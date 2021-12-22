@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
@@ -30,6 +31,8 @@ class totalBalance(models.Model):
   register_date = models.DateTimeField(auto_now=True, 
                                        verbose_name="Inserido em")
   
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  
   class Meta:
     db_table = 'totalBalance'
     
@@ -55,8 +58,10 @@ class moneyInputer(models.Model):
   input_date = models.DateField(verbose_name="Data de pagamento")
   
   account = models.ForeignKey('totalBalance', 
-                              on_delete=models.RESTRICT,
+                              on_delete=models.CASCADE,
+                              verbose_name="Conta"
                               )
+  
   
   def __str__(self):
     return self.title
@@ -91,8 +96,10 @@ class moneyOutputs(models.Model):
                                      verbose_name="Parcelas")
   
   account = models.ForeignKey('totalBalance',
-                              on_delete=models.RESTRICT,
+                              on_delete=models.CASCADE,
                               verbose_name="Conta")
+  
+
 
 
   def __str__(self):

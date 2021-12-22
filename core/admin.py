@@ -2,7 +2,7 @@ from django.contrib import admin
 from core.models import totalBalance, moneyInputer, moneyOutputs
 
 class dashboardBalance(admin.ModelAdmin):
-  list_display = ('account', 'bank', 'money_format', 'register_date')
+  list_display = ('account', 'bank', 'money_format', 'register_date', 'user')
 
   def money_format(self, obj):
     balance = f'R$ {obj.balance}'

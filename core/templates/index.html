@@ -3,12 +3,12 @@
 {% load custom_tags %}
 
 {% block content %}
-<h1> Bem-vindo ao seu Gerenciador de Finanças Pessoais</h1>
+<h1> Bem-vindo {{ user }}</h1>
 <h2>Informações Gerais</h2>
 <div class="content">
     <div class="card-box sm">
         <h3>Saldo</h3>
-        <p>{{ current_balance }}</p>
+        <p>{{ infos.current_balance }}</p>
         <div class="mini-box">
             <a href="{% url 'accounts' %}">
                 <span>
@@ -20,8 +20,8 @@
     </div>
     <div class="card-box lg">
         <h3>Compras & Gastos</h3>
-        <p>Débito: {{ values_outputs_debit }}</p>
-        <p>Crédito: {{ values_outputs_credit }}</p>
+        <p>Débito: {{ infos.values_outputs_debit }}</p>
+        <p>Crédito: {{ infos.values_outputs_credit }}</p>
         <div class="mini-box">
             <a href="extract/">
                 <span>

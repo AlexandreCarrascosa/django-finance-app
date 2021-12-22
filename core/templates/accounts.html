@@ -5,7 +5,24 @@
 <div class="content">
 
     <div class="box">
+
+        {% if not accounts %}
+        
+            <div class="box-content">
+                <p>Nenhuma conta cadastrada!</p>
+                <div class="box-subcontent center effect-hover">
+                    <a href="{% url 'new_account' %}" >
+                        <span>
+                            Clique aqui para registrar!
+                        </span>
+                        
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
         {% for account in accounts %}
+        
         <div class="box-content">
             <h1>{{ account.bank }}</h1>
             <p>Conta: {{ account.account }}</p>
@@ -32,11 +49,21 @@
                     {% for message in messages %}
                     <p> {{ message }}</p>
                     <form action="delete/{{ account.account }}" method="POST">{% csrf_token %}
-                    <span> Digite <b>{{account.bank}}/{{account.account}}</b> e confirme</span>             
-                    <input type="text" name="text-delete-confirm" id="text-delete-confirm" placeholder="{{ account.bank }}/{{ account.account }}">
-                    <button type="submit" class="btn">Confirmar</button>
+                    <span> 
+                        Digite <b>{{account.bank}}/{{account.account}}</b> e confirme
+                    </span>             
+                    <input 
+                        type="text" 
+                        name="text-delete-confirm" 
+                        id="text-delete-confirm" placeholder="{{ account.bank }}/{{ account.account }}"
+                        >
+                    <button type="submit" class="btn">
+                        Confirmar
+                    </button>
                     <a href="{% url 'accounts' %}">
-                        <button type="button" class="btn">Cancelar</button>
+                        <button type="button" class="btn">
+                            Cancelar
+                        </button>
                     </a>
                     </form>
                 </div>

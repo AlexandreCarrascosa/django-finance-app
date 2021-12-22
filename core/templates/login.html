@@ -2,6 +2,55 @@
 
 {% block content %}
 
+<div align="center">
+    <div class="card-box form">
+        <form action='{% url "submit" %}' method="POST"> {% csrf_token %}
+            <h2>Login</h2>
+            <div class="post-form">
+                <table>
+                    <tr>
+                        <th>
+                            <label>Usuário:</label>
+                        </th>
+                        <td>
+                            <input 
+                                type="text"
+                                name="username"
+                                required> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>Senha:</label>
+                        </th>
+                        <td>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                required>
+                        </td>
+                    </tr>
+                </table>
+            
+            </div>
+            <div class="button-box login">
+                <button type="submit">Entrar</button>
+                
+            </div>
+            <p class="login">Não tem um conta?
+                <a href="">Registre-se</a>
+            </p>         
+
+        </form>
+    </div>
+    </div>
+    <div class="message-info alert">
+        {% for message in messages %}
+            <h5>
+                {{ message }}
+            </h5>
+        {% endfor %}
+</div>
 
 
 {% endblock %}

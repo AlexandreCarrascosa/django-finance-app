@@ -15,6 +15,12 @@
     font-size: 14px !important;
 }
 
+.alert{
+    margin-top: 3rem;
+    font-size: 18px;
+    text-align: center;
+}
+
 .sm {
     max-width: 20rem;
 }
@@ -34,6 +40,7 @@
     border-radius: 12px;
 }
 
-input[type="text"]{
+input{
     text-align: center;
 }
+

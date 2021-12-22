@@ -20,6 +20,15 @@
 }
 
 
+.login{
+    margin: 2rem;
+    font-size: 14px !important;
+    align-self: flex-end;
+}
+
+.login a{
+    color: yellowgreen;
+}
 
 .delete-account:hover{
     color: tomato;
