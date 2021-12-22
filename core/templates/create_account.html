@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div align="center">
+<div class="card-box form">
+<form method="post">
+    {% csrf_token %}
+    <h3>Registre uma nova conta</h3>
+        <div class="post-form">
+            <table>
+                {{ form.as_table }}
+            </table>
+        </div>
+        <div class="button-box">
+            <button type="submit">Registrar</button>
+            <a href="{% url 'accounts' %}">
+            <button type="button">Cancelar</button>
+            </a>
+        </div>
+        {% if messages %}
+        <div class="messages info">
+            {% for message in messages %}
+            <p {% if message.tags %} class = "{{ message.tags }}" {% endif %}>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</form>
+
+</div>
+</div> 
+
+
+
+{% endblock %}

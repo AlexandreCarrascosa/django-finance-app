@@ -4,7 +4,6 @@
 @import url(forms.css);
 
 
-
 * {
   box-sizing: border-box;
   text-decoration: none;
@@ -16,7 +15,7 @@ html {
   /* a cada 1rem será considerado 10px */
   font-size: 62.5%;
   text-decoration: none;
-  background-color: #ffff;
+  background-color: #303030;
   font-family: "Open Sans Condensed";
 }
 
@@ -25,8 +24,9 @@ a:link{
   text-decoration: none;
 }
 
+
 .main{
   margin-top: 5rem;
-  color: #354F52;
+  color: #E0E0E0;
   text-align: center;
 }

@@ -6,7 +6,7 @@
 }
 
 .navbar {
-  background: #2F3E46;
+  background: #040404;
 }
 
 /* Configure position of items in navbar */
@@ -34,7 +34,7 @@ nav ul li a {
 }
 
 nav ul li:hover {
-  border-bottom: .5rem solid #84A98C;
+  border-bottom: .5rem solid  #CBBD90;
 }
 
 nav ul li:last-child{

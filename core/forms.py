@@ -1,7 +1,8 @@
 from django import forms
 from django.db.models import fields
-from django.forms import ModelForm, DateInput, DecimalField, BooleanField
-from .models import moneyInputer, moneyOutputs
+from django.forms import ModelForm, DateInput, DecimalField, BooleanField, widgets
+from django.utils.translation import gettext_lazy as _
+from .models import moneyInputer, moneyOutputs, totalBalance
 
 class addInput(ModelForm):
     
@@ -43,3 +44,29 @@ class addOutput(ModelForm):
                                               'placeholder': 'Dia da compra',
                                               'type': 'date'}),
         }
+        
+        
+        
+
+class addAccount(ModelForm):
+    
+    class Meta:
+        model = totalBalance
+        fields = ['account',
+                  'bank',
+                  'balance']
+        
+        labels = {'account': 'Conta',
+                  'bank': 'Banco',
+                  'balance': 'Saldo'}
+        
+        error_messages = {
+            'account': {
+                'unique': _("Eii.. essa conta já está registrada!"),
+            },
+            'balance': {
+                'max_digits': _("Ops!! Esse saldo é um pouco grande, insira um valor de até 20 digitos!"),
+            } ,        
+        }
+        
+        

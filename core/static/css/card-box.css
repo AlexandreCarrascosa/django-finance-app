@@ -13,7 +13,7 @@
     height: 32rem;
 
     /* Glass (Blur) Effect */
-    background: linear-gradient(60deg, #99e2b477, #14746f3b);
+    background: linear-gradient(60deg, #1A2023, #041015);
     transform: perspective(100rem);
     transform-style: preserve-3d;
 
@@ -67,7 +67,7 @@ WIDTH SIZE FOR LARGE CARD BOX
 
 /* SETTINGS TO FORMAT TAGS INSIDE MINI-BOX */
 .card-box.lg .mini-box span{
-    color: #14746fa8;
+    color: #041015;
     left: 2rem;
     bottom: 2rem;
 }
@@ -93,6 +93,7 @@ WIDTH SIZE FOR LARGE CARD BOX
     position: absolute;
     bottom: 1.5rem;
     font-size: 2rem;
+    color: #E0E0E0
 }
 
 .card-box.lg h3 {
@@ -110,7 +111,7 @@ WIDTH SIZE FOR LARGE CARD BOX
 }
 
 .card-box span::after {
-    background-color: #354F52;
+    background-color: #E0E0E0;
     position: absolute;
     content: "";
     bottom: 0;
@@ -125,7 +126,7 @@ WIDTH SIZE FOR LARGE CARD BOX
 }
 
 .card-box.lg span::after {
-    background-color: #14746fa8;
+    background-color: #041015;
 }
 
 
