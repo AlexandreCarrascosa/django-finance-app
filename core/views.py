@@ -114,7 +114,8 @@ def insertInput(request):
     user = request.user
     infos = query_db(user)
 
-    form = addInput(request.POST or None)
+    # form = addInput(request.POST or None, user=user)
+    form = addInput(user=user)
     infos['form'] = form
 
     if request.POST:
@@ -146,7 +147,7 @@ def insertOutput(request):
     user = request.user
     infos = query_db(user)
 
-    form = addOutput(request.POST or None)
+    form = addOutput(user=user)
     infos['form'] = form
 
     if request.POST:

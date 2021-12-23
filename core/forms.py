@@ -25,6 +25,11 @@ class addInput(ModelForm):
 
         }
         
+    def __init__(self, user=None, **kwargs):
+        super(addInput, self).__init__(**kwargs)
+        if user:
+            self.fields['account'].queryset= totalBalance.objects.filter(user=user)
+        
 
 class addOutput(ModelForm):
     class Meta:
@@ -44,6 +49,11 @@ class addOutput(ModelForm):
                                               'placeholder': 'Dia da compra',
                                               'type': 'date'}),
         }
+        
+    def __init__(self, user=None, **kwargs):
+        super(addOutput, self).__init__(**kwargs)
+        if user:
+            self.fields['account'].queryset= totalBalance.objects.filter(user=user)
         
         
         
@@ -68,5 +78,7 @@ class addAccount(ModelForm):
                 'max_digits': _("Ops!! Esse saldo é um pouco grande, insira um valor de até 20 digitos!"),
             } ,        
         }
+    
+    
         
         
