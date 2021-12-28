@@ -134,9 +134,7 @@ def index(request):
     context = {
         'infos': infos,
         'user': user,
-    }
-    
-    
+    }    
 
     return render(request, 'index.html', context=context)
 
@@ -169,8 +167,14 @@ def insertInput(request):
 
     if request.method == "POST":
         return HttpResponseRedirect(request.POST.get('moviment_type'))
+    
+    context = {
+        "user": user,
+        "infos": infos,
+        "form": form,
+    }
 
-    return render(request, 'form_input.html', context=infos)
+    return render(request, 'form_input.html', context=context)
 
 
 def insertOutput(request):
@@ -208,8 +212,14 @@ def insertOutput(request):
 
     if request.method == "POST":
         return HttpResponseRedirect(request.POST.get('moviment_type'))
+    
+    context = {
+        "user": user,
+        "infos": infos,
+        "form": form,
+    }
 
-    return render(request, 'form_output.html', context=infos)
+    return render(request, 'form_output.html', context=context)
 
 
 @login_required(login_url="/login/")
