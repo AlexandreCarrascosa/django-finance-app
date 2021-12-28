@@ -35,6 +35,11 @@ a:link{
   justify-content: center;
 }
 
+.text-left{
+  text-align: left;
+  padding: 2rem 0 2rem 2rem;
+}
+
 .effect-hover a:hover{
   color: yellowgreen;
 }

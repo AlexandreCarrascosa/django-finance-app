@@ -1,0 +1,35 @@
+{% extends 'login.html' %}
+
+{% block content %}
+
+<div align="center">
+    <div class="card-box form lg">
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Registre-se</h2>
+            <div class="post-form text-left">
+                <table>
+                    {{ form }}
+                </table>
+            </div>
+            <div class="button-box login">
+                <button type="submit">Registrar-se</button>
+                
+            </div>
+            <p class="login">Já tem um conta? Faça o
+                <a href="{% url 'login' %}">Login</a>
+            </p> 
+        </form>
+    </div>
+</div>
+<div class="message-info alert">
+    {% for message in messages %}
+        <div>
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
+

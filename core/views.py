@@ -92,6 +92,36 @@ def submit_login(request):
         
     return redirect('/')
 
+def register_user(request):
+    
+    form = NewUser(request.POST or None)
+
+    if request.POST:
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Usuário Criado com Sucesso!!!")
+            return redirect("/")
+
+        else:
+            
+            messages.error(request, "O Cadastro do Usuário falhou 😥")
+            for field in form:
+                for error in field.errors:
+                    print(field, error)                   
+                    messages.error(request, error)
+                       
+            return HttpResponseRedirect(reverse('register'))
+          
+    context = {
+        "form": form
+    }
+    
+    
+    
+    return render(request, 'register.html', context=context)
+
+
 
 @login_required(login_url="/login/")
 def index(request):
@@ -201,7 +231,7 @@ def accounts(request):
         'data': data,
     }
     
-    print(type(registered_accounts))
+    
 
     return render(request, 'accounts.html', context=context)
 
