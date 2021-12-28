@@ -118,7 +118,6 @@ def register_user(request):
     }
     
     
-    
     return render(request, 'register.html', context=context)
 
 
@@ -134,8 +133,10 @@ def index(request):
     
     context = {
         'infos': infos,
-        'user': request.user,
+        'user': user,
     }
+    
+    
 
     return render(request, 'index.html', context=context)
 
