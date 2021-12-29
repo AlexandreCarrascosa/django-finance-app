@@ -37,6 +37,13 @@ nav ul li:hover {
   border-bottom: .5rem solid  #CBBD90;
 }
 
+nav ul li:first-child{
+  position: absolute;
+  left: 5rem;
+  top: 0.7rem;
+  border: 0;
+}
+
 nav ul li:last-child{
   position: absolute;
   right: 5rem;
