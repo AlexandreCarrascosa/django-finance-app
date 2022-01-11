@@ -6,7 +6,7 @@
 }
 
 .navbar {
-  background: #040404;
+  background: var(--main-bg-dark);
 }
 
 /* Configure position of items in navbar */
@@ -30,11 +30,11 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #FFF;
+  color: var(--main-text-color);
 }
 
 nav ul li:hover {
-  border-bottom: .5rem solid  #CBBD90;
+  border-bottom: .5rem solid  var(--gold-color);
 }
 
 nav ul li:first-child{
@@ -52,5 +52,5 @@ nav ul li:last-child{
 
 nav ul li:last-child > a:hover{
   font-weight: bold;
-  color:rgb(233, 44, 44);
+  color: var(--red-color);
 }

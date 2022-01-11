@@ -13,5 +13,6 @@ urlpatterns = [
   path('accounts/delete/<account>', views.delete_account, name='delete_account'),
   path('accounts/new/', views.create_account, name='new_account'),
   path('accounts/edit/<account>', views.edit_account, name="edit_account"),
+  path('extract/', views.extract, name="extract"),
 ]
 

@@ -1,3 +1,4 @@
+@import url(colors.css);
 @import url(navbar.css);
 @import url(content.css);
 @import url(texts.css);
@@ -15,8 +16,19 @@ html {
   /* a cada 1rem será considerado 10px */
   font-size: 62.5%;
   text-decoration: none;
-  background-color: #303030;
+  background-color: var(--main-bg-color);
   font-family: "Open Sans Condensed";
+}
+
+footer{
+  background: var(--main-bg-dark);
+  color: var(--main-text-color);
+  text-align: center;
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  padding: 2rem 0 2rem 0;
+  font-size: 1.4rem;
 }
 
 a:link{
@@ -27,7 +39,7 @@ a:link{
 
 .main{
   margin-top: 5rem;
-  color: #E0E0E0;
+  color: var(--main-text-color);
   text-align: center;
 }
 
@@ -41,5 +53,6 @@ a:link{
 }
 
 .effect-hover a:hover{
-  color: yellowgreen;
+  color: var(--green-color);
 }
+

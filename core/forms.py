@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.db.models import fields
 from django.forms import ModelForm, DateInput, BooleanField, EmailField, widgets
 from django.utils.translation import gettext_lazy as _
 from .models import moneyInputer, moneyOutputs, totalBalance
@@ -34,17 +33,23 @@ class addInput(ModelForm):
         
 
 class addOutput(ModelForm):
+    
     class Meta:
         model = moneyOutputs
         fields = ['title',
+                  'categories',
                   'description',
                   'value',
                   'output_date',
                   'payment_type',
                   'installments',
-                  'account']
+                  'account',
+                  ]
+        
         labels = {'description': 'Descrição',
-                  'payment_type': 'Forma de Pagamento'}
+                  'payment_type': 'Forma de Pagamento',
+                  'categories': 'Categoria'}
+        
         widgets = {
             'output_date': DateInput(format=('%d/%m/%Y'),
                                      attrs = {'class': 'form-control',
@@ -84,6 +89,7 @@ class addAccount(ModelForm):
     
 
 class NewUser(UserCreationForm):
+
     email = EmailField(required=True,
                        help_text= None)
     
@@ -97,13 +103,12 @@ class NewUser(UserCreationForm):
             "password1", 
             "password2",
                   ]
-        
- 
-        
+                
         labels = {
             "username": "Usuário",
             "password1": "Senha",
             "password2": "Confirme sua Senha",
+            "gender": "Gênero",
         }
         
     def save(self, commit=True):

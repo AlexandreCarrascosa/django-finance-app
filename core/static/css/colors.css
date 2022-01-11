@@ -1,0 +1,22 @@
+:root{
+    /* BACKGROUND COLORS */
+    --main-bg-color: #303030; 
+    --main-bg-dark: #040404;
+    --bg-dropdown-color: #f9f9f9;
+    --bg-card-box: linear-gradient(60deg, #1A2023, #041015);
+    --bg-cian: #264653;
+
+    /* TEXT COLORS */
+    --main-text-color: #E0E0E0;
+    --text-dark-cian: #041015;  
+    --text-dark-color: #041015;
+    --text-blue-green: #14746fa8;
+    
+    /* UTILS COLORS - buttons, links and similars */
+    --green-color: yellowgreen;
+    --red-color: tomato;
+    --gold-color: #CBBD90;
+
+    --box-shadow-color: rgba(0,0,0,0.2);
+    
+}

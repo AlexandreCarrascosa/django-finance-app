@@ -80,9 +80,7 @@ def submit_login(request):
         
         user = authenticate(username=username, 
                             password=password)
-        
-        print(username, password)
-        
+                
         if user is not None:
             login(request, user)
             return redirect('/')
@@ -127,6 +125,9 @@ def index(request):
 
     user = request.user
     infos = query_db(user)
+    name = user.get_full_name()
+    
+    print(name)
 
     if request.method == "POST":
         return HttpResponseRedirect(request.POST.get('moviment_type'))
@@ -134,6 +135,7 @@ def index(request):
     context = {
         'infos': infos,
         'user': user,
+        'name': name,
     }    
 
     return render(request, 'index.html', context=context)
@@ -347,3 +349,6 @@ def edit_account(request, account):
     return render(request, 'edit_account.html', context)
 
 
+@login_required(login_url="/login/")
+def extract(request):
+    return render(request, 'extract.html')

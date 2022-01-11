@@ -13,7 +13,7 @@
     height: 32rem;
 
     /* Glass (Blur) Effect */
-    background: linear-gradient(60deg, #1A2023, #041015);
+    background: var(--bg-card-box);
     transform: perspective(100rem);
     transform-style: preserve-3d;
 
@@ -52,7 +52,7 @@ WIDTH SIZE FOR LARGE CARD BOX
 
 /* SETTTING TO BOX INSIDE CARD-BOX, POSITIONED IN BOTTOM OF CARD */
 .card-box.lg .mini-box {
-    background-color: whitesmoke;
+    background-color: var(--bg-dropdown-color);
     position: absolute;
     align-content: space-around;
     justify-content: space-evenly;
@@ -67,13 +67,13 @@ WIDTH SIZE FOR LARGE CARD BOX
 
 /* SETTINGS TO FORMAT TAGS INSIDE MINI-BOX */
 .card-box.lg .mini-box span{
-    color: #041015;
+    color: var(--text-dark-color);
     left: 2rem;
     bottom: 2rem;
 }
 
 .card-box.lg .mini-box p{
-    color: #14746fa8;
+    color: var(--text-blue-green);
     right: 2rem;
     bottom: 2rem;
 }
@@ -82,7 +82,7 @@ WIDTH SIZE FOR LARGE CARD BOX
 .card-box h3 {
     font-family: 'Exo 2';
     font-size: 3.6rem;
-    text-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.4);
+    text-shadow: 0 0 0.2rem var(--box-shadow-color);
 }
 
 .card-box p {
@@ -93,7 +93,7 @@ WIDTH SIZE FOR LARGE CARD BOX
     position: absolute;
     bottom: 1.5rem;
     font-size: 2rem;
-    color: #E0E0E0
+    color: var(--main-text-color);
 }
 
 .card-box.lg h3 {
@@ -106,12 +106,12 @@ WIDTH SIZE FOR LARGE CARD BOX
 }
 
 .card-box:hover {
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 6px 10px var(--box-shadow-color);
     transform: scale(1.03);
 }
 
 .card-box span::after {
-    background-color: #E0E0E0;
+    background-color: var(--main-text-color);
     position: absolute;
     content: "";
     bottom: 0;
@@ -126,7 +126,7 @@ WIDTH SIZE FOR LARGE CARD BOX
 }
 
 .card-box.lg span::after {
-    background-color: #041015;
+    background-color: var(--text-dark-cian);
 }
 
 
@@ -157,8 +157,8 @@ WIDTH SIZE FOR LARGE CARD BOX
     margin: 5rem;
     padding: 5rem;
 
-    background-color: #264653;
-    color: white;
+    background-color: var(--bg-cian);
+    color: var(--main-text-color);
 
     border-radius: 1.2rem;
     align-self: center;
@@ -170,7 +170,7 @@ WIDTH SIZE FOR LARGE CARD BOX
     justify-content: space-between;
 
     position: relative;
-    color: white;
+    color: var(--main-text-color);
 
 }
 
@@ -178,6 +178,6 @@ WIDTH SIZE FOR LARGE CARD BOX
     
     font-size: 1.8rem;
     margin-top: 2rem;
-    color: white;
+    color: var(--main-text-color);
     
 }

@@ -71,6 +71,21 @@ class moneyOutputs(models.Model):
                            verbose_name="Título",
                            )
   
+  CATEGORIES_LIST = (
+        ("AL", "ALIMENTAÇÃO"),
+        ("CA", "CASA"),
+        ("CO", "COMUNICAÇÃO"),
+        ("DP", "DESPESAS PESSOAIS"),
+        ("IN", "INVESTIMENTOS"),
+        ("LZ", "LAZER"),
+        ("SA", "SAÚDE"),
+        ("TP", "TRANSPORTE")
+    )
+    
+  categories = models.CharField(max_length=100,
+                           choices=CATEGORIES_LIST)
+    
+  
   description = models.TextField(blank=True,
                                  null=True)
   

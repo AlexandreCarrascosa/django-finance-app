@@ -33,11 +33,11 @@
 }
 
 .success {
-    color: yellowgreen;
+    color: var(--green-color);
 }
 
 .error {
-    color: tomato ;
+    color: var(--red-color) ;
 }
 
 .btn{
