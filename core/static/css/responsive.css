@@ -24,6 +24,14 @@
 
     }
 
+    h1{
+        font-size: 2.8rem;
+    }
+
+    h2{
+        font-size: 2.6rem;
+    }
+
     .dropdown{
         flex-shrink: 2 !important;
     }
@@ -38,16 +46,41 @@
         font-size: 2rem;
     }
 
+
     .card-box.sm,
-    .card-box.lg{
-        min-width: 16rem;
-        max-width: 32rem;
+    .card-box.lg,
+    .mini-box,
+    .extra{
+        min-width: 20rem;
+        max-width: 40rem;        
     }
 
     .card-box.lg h3,
     .card-box.lg.extra{
         font-size: 2rem;
         text-align: center;
-        align-self: center;
+    }
+
+
+    .extra label{
+        font-size: 1rem;
+        flex-grow: 3;
+        align-self: flex-start;
+        min-width: 10rem !important;
+        
+    }
+
+    .extra td,
+    textarea, input, select{
+        width: 17.3rem;
+        
+    }
+
+    .extra textarea{
+        height: 5rem;
+    }
+
+    .extra th {
+        text-align: left;
     }
 }
