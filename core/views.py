@@ -127,7 +127,6 @@ def index(request):
     infos = query_db(user)
     name = user.get_full_name()
     
-    print(name)
 
     if request.method == "POST":
         return HttpResponseRedirect(request.POST.get('moviment_type'))
@@ -150,13 +149,16 @@ def insertInput(request):
     infos['form'] = form
 
     if request.POST:
+        
+        form = addInput(user=user, data=request.POST)
+        
         if form.is_valid():
             title = request.POST.get('title')
             value = request.POST.get('value')
             input_date = request.POST.get('input_date')
             account_number = request.POST.get('account')
 
-            account = totalBalance.objects.get(account=account_number)
+            account = totalBalance.objects.filter(user=user).get(account=account_number)
 
             account.balance += Decimal(float(value))
             account.save()
@@ -188,8 +190,12 @@ def insertOutput(request):
     infos['form'] = form
 
     if request.POST:
+        
+        form = addOutput(user=user, data=request.POST)
+        
         if form.is_valid():
             title = request.POST.get('title')
+            categories = request.POST.get('categories')
             description = request.POST.get('description')
             value = request.POST.get('value')
             output_date = request.POST.get('output_date')
@@ -198,12 +204,14 @@ def insertOutput(request):
 
             account_number = request.POST.get('account')
             account = totalBalance.objects.filter(user=user).get(account=account_number)
+            
 
             if payment_type == "D":
                 account.balance -= Decimal(float(value))
                 account.save()
 
             moneyOutputs.objects.create(title=title,
+                                        categories=categories,
                                         description=description,
                                         value=value,
                                         output_date=output_date,

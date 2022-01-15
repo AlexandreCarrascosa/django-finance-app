@@ -6,10 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from .models import moneyInputer, moneyOutputs, totalBalance
 
 class addInput(ModelForm):
-    
-    repeat_input = BooleanField(label='Repetir operação neste dia',
-                                required=False)
-    
+        
     class Meta:
         model = moneyInputer
         fields = ['title',

@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="dark light">
-
-    {% block title %}
-    <title>Finances</title>
-    {% endblock %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <meta name="color-scheme" content="dark light"> -->
+        {% block title %}
+        <title>Finances</title>
+        {% endblock %}
 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="icon" href="{% static 'favicon.ico' %}">
-
-    {% load custom_tags %}
-    
-    <script src="https://kit.fontawesome.com/6563b52298.js" crossorigin="anonymous"></script>
-  
-  </head>
-  <!-- Document BOdy -->
-  <body>
-      <!-- Navigation Bar -->
-    <nav class="navbar">
-      <div class="navbar-nav">
-        <ul>
-          <li>
-            <a href="{% url 'index' %}" class="navbar-brand">
-              <img src="{% static 'logo.png' %}" alt="Gestor de Finanças Pessoais Logo" title="Gestão de Financas Pessoais">
-            </a>
-          </li>
-          <li>
-            <a href="{% url 'index' %}">Página Inicial</a>
-          </li>
-          <!-- <li>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="icon" href="{% static 'favicon.ico' %}">
+        {% load custom_tags %}
+        <script src="https://kit.fontawesome.com/6563b52298.js" crossorigin="anonymous"></script>
+        <script src="{% static 'js/toggle-theme.js' %}" defer></script>
+    </head>
+    <!-- Document BOdy -->
+    <body>
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="navbar-nav">
+                <ul>
+                    <li>
+                        <a href="{% url 'index' %}" class="navbar-brand">
+                            <img src="{% static 'logo.png' %}" alt="Gestor de Finanças Pessoais Logo" title="Gestão de Financas Pessoais">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}">Página Inicial</a>
+                    </li>
+                    <!-- <li>
             <a href="{% url 'accounts' %}">Contas</a>
           </li> -->
-          <li>
-            <div class="dropdown">
-              <button class="dropbtn">Contas</button>
-              <div class="dropdown-content">
-                <a href="{% url 'new_account' %}">Registrar Conta</a>
-                <a href="{% url 'accounts' %}">Contas Registradas</a>
-              </div>
-            </div>            
-          </li>
-          <li>
-            <a href="{% url 'extract' %}">Extrato</a>
-          </li>
-          <li>
-            <a href="{% url 'logout' %}">Sair</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <!-- Content of the page -->
-
-    <div class="main">
-      {% block content %} {% endblock %}
-    </div>
-  </body>
-  <footer>
-    Desenvolvindo por <b>Alexandre de Freitas Carrascosa</b>
-  </footer>
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn">Contas</button>
+                            <div class="dropdown-content">
+                                <a href="{% url 'new_account' %}">Registrar Conta</a>
+                                <a href="{% url 'accounts' %}">Contas Registradas</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="{% url 'extract' %}">Extrato</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">Sair</a>
+                        <button id="theme-toggle" class="btn" type="button">
+                              <i class="fas fa-sun" id="toggle-icon"></i>
+                      </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Content of the page -->
+        <div class="main">
+            {% block content %} {% endblock %}
+        </div>
+    </body>
+    <footer>
+        Desenvolvindo por
+        <b>Alexandre de Freitas Carrascosa</b>
+    </footer>
 </html>

@@ -14,7 +14,7 @@
 }
 
 .button-box button:hover {
-    background-color: var(--text-green);
+    background-color: var(--bg-cian);
     color: whitesmoke;
     cursor: pointer;
 }

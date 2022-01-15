@@ -20,3 +20,29 @@
     --box-shadow-color: rgba(0,0,0,0.2);
     
 }
+
+
+[data-theme='light'] .d-block-light,
+[data-theme='dark'] .d-block-dark {
+    display: block !important;
+}
+
+
+html[data-theme='light'] {
+        /* BACKGROUND COLORS */
+        --main-bg-color: #f5f5f5; 
+        --main-bg-dark: #c0c0c0;
+        --bg-card-box: linear-gradient(60deg, #93a7ad, #8c9ba3);
+        --bg-cian: #a8b5ba;
+
+        /* TEXT COLORS */
+        --main-text-color: #0e0e0e;
+        --text-dark-cian: #041015;  
+        --text-dark-color: #041015;
+        --text-blue-green: #a1c7c5;
+
+        /* UTILS COLORS - buttons, links and similars */
+        --green-color: darkgreen;
+        --red-color: darkred;
+        --gold-color: #e0c774;
+}

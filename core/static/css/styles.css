@@ -18,6 +18,7 @@ html {
   text-decoration: none;
   background-color: var(--main-bg-color);
   font-family: "Open Sans Condensed";
+  transition: all 500ms linear;
 }
 
 footer{
