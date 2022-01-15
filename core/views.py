@@ -2,6 +2,7 @@ from decimal import Decimal
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Sum, fields
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import Http404
@@ -31,16 +32,18 @@ def query_db(user):
     for key in extracts.keys():
         for extractvalue in extracts[key]:
             if key == 'outputs':
-                extract.append((float(extractvalue.get_output_values()),
-                                str(extractvalue.output_date))
+                extract.append({'value': float(extractvalue.get_output_values()),
+                                'date': str(extractvalue.output_date), 
+                                'title': str(extractvalue.title)}
                                )
             else:
-                extract.append((float(extractvalue.value),
-                                str(extractvalue.input_date))
+                extract.append({'value':float(extractvalue.value),
+                                'date': str(extractvalue.input_date),
+                                'title': str(extractvalue.title)}
                                )
 
     # Get outpurs in debit
-    outputs_debit = moneyOutputs.objects.filter(        payment_type__startswith="D").all()
+    outputs_debit = moneyOutputs.objects.filter(payment_type__startswith="D").all()
 
     values_outputs_debit = outputs_debit.aggregate(total=Sum('value'))['total']
 
@@ -359,4 +362,22 @@ def edit_account(request, account):
 
 @login_required(login_url="/login/")
 def extract(request):
-    return render(request, 'extract.html')
+    
+    user = request.user
+    extract_list = query_db(user)['extract']
+
+    print(extract_list)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(extract_list, 10)
+    
+    try:
+        extracts = paginator.page(page)
+    
+    except PageNotAnInteger:
+        extracts = paginator.page(1)
+    
+    except EmptyPage:
+        extracts = paginator.page(paginator.num_pages)
+    
+    
+    return render(request, 'extract.html', {'extracts': extracts})

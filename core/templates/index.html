@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1> Olá, {{ user.first_name }}!</h1>
-<h2>Veja as Informações Gerais sobre seu saldo</h2>
+<h2>Veja as Informações Gerais sobre suas finanças</h2>
 <div class="content">
     <div class="card-box sm">
         <h3>Saldo</h3>
@@ -23,7 +23,7 @@
         <p>Débito: {{ infos.values_outputs_debit }}</p>
         <p>Crédito: {{ infos.values_outputs_credit }}</p>
         <div class="mini-box">
-            <a href="extract/">
+            <a href="{% url 'extract' %}">
                 <span>
                     Ir para extrato
                     <i class="fas fa-arrow-right"></i>

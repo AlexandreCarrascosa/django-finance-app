@@ -1,0 +1,19 @@
+.extract-box{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.extract-box td{
+    padding: 10px;
+}
+
+.table {
+    font-size: 16px;
+    background: var(--bg-card-box);
+}
+
+.table-bordered{
+    border-radius: 5px;
+    padding: 5px;
+}

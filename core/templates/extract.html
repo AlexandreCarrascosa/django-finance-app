@@ -4,7 +4,40 @@
 
 <div class="content">
     <div class="extract-box">
-        <h1>Extrato</h1>
+        <h1>Movimentações</h1>
+        <table class="table table-bordered">
+            <tbody>
+                {% for extract in extracts %}
+                    <tr>
+                        <td>{{ extract.date }}</td>
+                        <td>{{ extract.title }}</td>
+                        <td>R$ {{ extract.value }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if extracts.has_other_pages %}
+        <ul class="pagination">
+            {% if extracts.has_previous %}
+                <li><a href="?page={{ extract.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in extracts.paginator.page_range %}
+                    {% if extracts.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+            {% endfor %}
+            {% if extracts.has_next %}
+                <li><a href="?page={{ extracts.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
     </div>
     <div class="graph-box">
         <h1>Gráficos</h1>
