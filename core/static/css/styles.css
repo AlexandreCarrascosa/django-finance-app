@@ -4,6 +4,7 @@
 @import url(texts.css);
 @import url(forms.css);
 @import url(extract.css);
+@import url(responsive.css);
 
 
 * {
@@ -27,7 +28,6 @@ footer{
   color: var(--main-text-color);
   text-align: center;
   width: 100vw;
-  position: absolute;
   bottom: 0;
   padding: 2rem 0 2rem 0;
   font-size: 1.4rem;

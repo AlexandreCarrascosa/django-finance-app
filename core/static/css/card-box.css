@@ -134,7 +134,7 @@ WIDTH SIZE FOR LARGE CARD BOX
     height: 5%;
 }
 
-.card-box.lg.extra>h3 {
+.card-box.lg.extra > h3 {
     position: fixed;
     align-self: center;
 }

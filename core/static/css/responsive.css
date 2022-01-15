@@ -1,0 +1,53 @@
+@media only screen and (max-width: 600px){
+    
+    .content{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-brand{
+        display: none;
+    }
+
+    nav{
+        flex-basis: 6rem;
+    }
+
+    nav ul li {
+        min-width:  6.5rem ;
+        padding: 0 2rem 0 2rem;
+    }
+
+    nav *,
+    nav button{
+        font-size: 1.5rem !important;
+
+    }
+
+    .dropdown{
+        flex-shrink: 2 !important;
+    }
+
+    .card-box{
+        text-align: center;
+        height: 22rem;
+        margin: 5rem;
+    }
+
+    .card-box p, span{
+        font-size: 2rem;
+    }
+
+    .card-box.sm,
+    .card-box.lg{
+        min-width: 16rem;
+        max-width: 32rem;
+    }
+
+    .card-box.lg h3,
+    .card-box.lg.extra{
+        font-size: 2rem;
+        text-align: center;
+        align-self: center;
+    }
+}
