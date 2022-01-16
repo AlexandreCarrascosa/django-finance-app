@@ -14,6 +14,7 @@
   margin: 0;
 }
 
+
 html {
   /* a cada 1rem será considerado 10px */
   font-size: 62.5%;
@@ -23,11 +24,18 @@ html {
   transition: all 500ms linear;
 }
 
+body{ 
+  height:100vh; 
+  margin:0; 
+  display: flex;
+  flex-direction: column;
+}
+
 footer{
   background: var(--main-bg-dark);
   color: var(--main-text-color);
   text-align: center;
-  width: 100vw;
+  margin-top: auto ;
   bottom: 0;
   padding: 2rem 0 2rem 0;
   font-size: 1.4rem;
@@ -43,6 +51,7 @@ a:link{
   margin-top: 5rem;
   color: var(--main-text-color);
   text-align: center;
+  height: 80vh;
 }
 
 .center{

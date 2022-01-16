@@ -5,8 +5,13 @@
         width: 100%;
     }
 
-    .navbar-brand{
+    .nav-brand{
         display: none;
+        overflow: hidden;
+    }
+
+    .navbar{
+        justify-content: flex-start;
     }
 
     nav{
@@ -82,5 +87,11 @@
 
     .extra th {
         text-align: left;
+    }
+
+    .box-content{
+        justify-self: center;
+        align-self: center;
+        padding: 2rem;
     }
 }

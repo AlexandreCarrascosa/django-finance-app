@@ -20,13 +20,13 @@
     <body>
         <!-- Navigation Bar -->
         <nav class="navbar">
+            <div class='nav-brand'>
+                <a href="{% url 'index' %}" class="navbar-brand">
+                    <img src="{% static 'logo.png' %}" alt="Gestor de Finanças Pessoais Logo" title="Gestão de Financas Pessoais">
+                </a>
+            </div>
             <div class="navbar-nav">
                 <ul>
-                    <li>
-                        <a href="{% url 'index' %}" class="navbar-brand">
-                            <img src="{% static 'logo.png' %}" alt="Gestor de Finanças Pessoais Logo" title="Gestão de Financas Pessoais">
-                        </a>
-                    </li>
                     <li>
                         <a href="{% url 'index' %}">Página Inicial</a>
                     </li>
