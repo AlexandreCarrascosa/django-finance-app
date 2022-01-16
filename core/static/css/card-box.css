@@ -31,6 +31,9 @@
     text-align: left;
     border-radius: 3.2rem;
 
+    padding: 5rem;
+    margin-bottom: 2rem;
+
 }
 
 /* 
@@ -130,10 +133,6 @@ WIDTH SIZE FOR LARGE CARD BOX
 }
 
 
-.card-box.lg.extra {
-    height: 5%;
-}
-
 .card-box.lg.extra > h3 {
     position: fixed;
     align-self: center;
@@ -154,7 +153,6 @@ WIDTH SIZE FOR LARGE CARD BOX
     flex-wrap: wrap;
     flex-direction: column;
     
-    /* margin: 5rem; */
     padding: 5rem;
 
     background-color: var(--bg-cian);
