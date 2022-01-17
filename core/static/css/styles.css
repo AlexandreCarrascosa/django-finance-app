@@ -22,7 +22,6 @@ html {
   background-color: var(--main-bg-color);
   font-family: "Open Sans Condensed";
   transition: all 500ms linear;
-  overflow-x: hidden;
 }
 
 body{ 
@@ -39,6 +38,7 @@ footer{
   padding: 2rem 0 2rem 0;
   font-size: 1.4rem;
 }
+
 
 a:link{
   /* color: #354F52; */
